@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Velto - Premium OTT Streaming Application">
+    <title>Velto | Watch Movies, TV Shows & Live TV</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="logo">VELTO</div>
+            <ul class="nav-links">
+                <li class="nav-item active" data-target="home-view"><a href="#">Home</a></li>
+                <li class="nav-item" data-target="search-view"><a href="#">Search</a></li>
+                <li class="nav-item" data-target="downloads-view"><a href="#">Downloads</a></li>
+                <li class="nav-item" data-target="subscription-view"><a href="#">Subscription</a></li>
+                <li><a href="#mylist">My List</a></li>
+            </ul>
+            <div class="nav-actions">
+                <i data-lucide="search" class="icon nav-item" data-target="search-view"></i>
+                <i data-lucide="bell" class="icon"></i>
+                <div class="profile-menu">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Profile" class="avatar">
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i data-lucide="menu" class="icon"></i>
+            </div>
+        </nav>
+
+        <!-- VIEWS CONTAINER -->
+        <div id="main-content">
+
+            <!-- HOME VIEW -->
+            <div id="home-view" class="view active">
+                <!-- Hero Section -->
+                <div class="hero-section">
+                    <video class="hero-bg-video" autoplay muted loop playsinline
+                        poster="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2670&auto=format&fit=crop">
+                        <source src="https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4"
+                            type="video/mp4">
+                    </video>
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <div class="hero-badge">No. 1 in Movies Today</div>
+                        <h1 class="hero-title" id="hero-title">Loading...</h1>
+                        <p class="hero-description" id="hero-desc">...</p>
+                        <div class="hero-buttons">
+                            <button class="btn btn-primary" id="hero-play-btn"><i data-lucide="play"
+                                    class="fill-icon"></i> Play</button>
+                            <button class="btn btn-secondary"><i data-lucide="info"></i> More Info</button>
+                        </div>
+                    </div>
+                </div>
+
+                <main class="content-container">
+                    <section class="category-row">
+                        <h2 class="row-title">Trending Now</h2>
+                        <div class="row-scroller" id="trending-row">
+                            <!-- Items injected by JS -->
+                        </div>
+                    </section>
+
+                    <section class="category-row">
+                        <h2 class="row-title">Top Rated Movies</h2>
+                        <div class="row-scroller" id="top-rated-row"></div>
+                    </section>
+
+                    <section class="category-row">
+                        <h2 class="row-title">Action Thrillers</h2>
+                        <div class="row-scroller" id="action-row"></div>
+                    </section>
+
+                    <section class="category-row">
+                        <h2 class="row-title">Comedy Hits</h2>
+                        <div class="row-scroller" id="comedy-row"></div>
+                    </section>
+                </main>
+            </div>
+
+            <!-- SEARCH VIEW -->
+            <div id="search-view" class="view hidden">
+                <div class="view-padding">
+                    <div class="search-header">
+                        <div class="search-bar">
+                            <i data-lucide="search" class="search-icon"></i>
+                            <input type="text" placeholder="Search movies, shows, genres..." id="search-input">
+                        </div>
+                    </div>
+                    <h2 class="section-title">Top Searches</h2>
+                    <div class="grid-layout" id="search-results">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- DOWNLOADS VIEW -->
+            <div id="downloads-view" class="view hidden">
+                <div class="view-padding">
+                    <div class="page-header">
+                        <h2 class="page-title">My Downloads</h2>
+                        <button class="btn-text">Manage</button>
+                    </div>
+                    <div class="downloads-list" id="downloads-list">
+                        <!-- Empty state by default or mock items -->
+                        <div class="empty-state">
+                            <div class="empty-icon"><i data-lucide="download-cloud"></i></div>
+                            <h3>No Downloads Yet</h3>
+                            <p>Movies and TV shows you download will appear here.</p>
+                            <button class="btn btn-secondary nav-item" data-target="home-view">Find Something to
+                                Watch</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUBSCRIPTION VIEW -->
+            <div id="subscription-view" class="view hidden">
+                <div class="view-padding">
+                    <div class="subscription-header">
+                        <h1>Choose Your Plan</h1>
+                        <p>Unlock the full Velto experience. Cancel anytime.</p>
+                    </div>
+                    <!-- Plans Container (Updated with IDs for JS) -->
+                    <div class="plans-container">
+                        <div class="plan-card">
+                            <div class="plan-name">Basic</div>
+                            <div class="plan-price">$7.99<span>/mo</span></div>
+                            <ul class="plan-features">
+                                <li><i data-lucide="check"></i> 720p HD Streaming</li>
+                                <li><i data-lucide="check"></i> Watch on 1 Device</li>
+                                <li><i data-lucide="check"></i> Limited Ads</li>
+                            </ul>
+                            <button class="btn btn-secondary full-width plan-select-btn" data-plan="Basic"
+                                data-price="$7.99">Select Basic</button>
+                        </div>
+                        <div class="plan-card featured">
+                            <div class="plan-badge">Most Popular</div>
+                            <div class="plan-name">Standard</div>
+                            <div class="plan-price">$12.99<span>/mo</span></div>
+                            <ul class="plan-features">
+                                <li><i data-lucide="check"></i> 1080p Full HD</li>
+                                <li><i data-lucide="check"></i> Watch on 2 Devices</li>
+                                <li><i data-lucide="check"></i> Ad-Free Experience</li>
+                                <li><i data-lucide="check"></i> Download for Offline</li>
+                            </ul>
+                            <button class="btn btn-primary full-width plan-select-btn" data-plan="Standard"
+                                data-price="$12.99">Select Standard</button>
+                        </div>
+                        <div class="plan-card">
+                            <div class="plan-name">Premium</div>
+                            <div class="plan-price">$16.99<span>/mo</span></div>
+                            <ul class="plan-features">
+                                <li><i data-lucide="check"></i> 4K Ultra HD + HDR</li>
+                                <li><i data-lucide="check"></i> Watch on 4 Devices</li>
+                                <li><i data-lucide="check"></i> Dolby Atmos Sound</li>
+                                <li><i data-lucide="check"></i> Download for Offline</li>
+                            </ul>
+                            <button class="btn btn-secondary full-width plan-select-btn" data-plan="Premium"
+                                data-price="$16.99">Select Premium</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROFILE VIEW -->
+            <div id="profile-view" class="view hidden">
+                <div class="view-padding">
+                    <!-- Profile Switcher -->
+                    <div class="profile-section" id="profile-switcher-section">
+                        <h1 class="page-title center-text">Who's Watching?</h1>
+                        <div class="profiles-grid">
+                            <div class="profile-item active" data-id="main">
+                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Main Profile">
+                                <span>Irshad</span>
+                            </div>
+                            <div class="profile-item" data-id="kids">
+                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Kids&backgroundColor=b6e3f4"
+                                    alt="Kids Profile">
+                                <span>Kids</span>
+                            </div>
+                            <div class="profile-item add-profile">
+                                <div class="add-icon"><i data-lucide="plus"></i></div>
+                                <span>Add Profile</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary manage-btn">Manage Profiles</button>
+                    </div>
+
+                    <!-- Account Settings (Hidden initially, toggled or below) -->
+                    <div class="account-section">
+                        <h2 class="section-title">Account Details</h2>
+                        <div class="account-card">
+                            <div class="input-group">
+                                <label>Account Name</label>
+                                <input type="text" value="Irshad" id="account-name">
+                            </div>
+                            <div class="input-group">
+                                <label>Email</label>
+                                <input type="email" value="user@example.com" readonly>
+                            </div>
+                            <div class="input-group">
+                                <label>Current Plan</label>
+                                <div class="plan-display">
+                                    <span id="current-plan-name">Free Tier</span>
+                                    <button class="btn-text" id="upgrade-btn">Upgrade</button>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary save-btn">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Payment Modal -->
+        <div id="payment-modal" class="modal-overlay">
+            <div class="modal-content payment-card">
+                <div class="modal-header">
+                    <h2>Confirm Subscription</h2>
+                    <button class="close-modal"><i data-lucide="x"></i></button>
+                </div>
+                <div class="payment-summary">
+                    <p>Plan: <span id="pay-plan-name">Standard</span></p>
+                    <p class="total-price" id="pay-plan-price">$12.99/mo</p>
+                </div>
+
+                <!-- Payment Tabs -->
+                <div class="payment-tabs">
+                    <button class="pay-tab active" data-method="card"><i data-lucide="credit-card"></i> Card</button>
+                    <button class="pay-tab" data-method="upi"><i data-lucide="smartphone"></i> UPI</button>
+                    <button class="pay-tab" data-method="paypal"><i data-lucide="wallet"></i> PayPal</button>
+                    <button class="pay-tab" data-method="crypto"><i data-lucide="bitcoin"></i> Crypto</button>
+                </div>
+
+                <!-- Method: Card -->
+                <form id="pay-form-card" class="payment-method-view active" onsubmit="event.preventDefault();">
+                    <div class="form-group">
+                        <label>Cardholder Name</label>
+                        <input type="text" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Card Number</label>
+                        <div class="card-input-wrapper">
+                            <i data-lucide="credit-card" class="card-icon"></i>
+                            <input type="text" placeholder="0000 0000 0000 0000" maxlength="19" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Expiry</label>
+                            <input type="text" placeholder="MM/YY" maxlength="5" required>
+                        </div>
+                        <div class="form-group">
+                            <label>CVC</label>
+                            <input type="text" placeholder="123" maxlength="3" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width pay-btn">Pay with Card</button>
+                </form>
+
+                <!-- Method: UPI -->
+                <div id="pay-form-upi" class="payment-method-view">
+                    <p class="method-label">Select UPI App</p>
+                    <div class="upi-grid">
+                        <div class="upi-item" data-app="Google Pay" data-color="#4285F4">
+                            <div class="app-icon gpay">G</div>
+                            <span>Google Pay</span>
+                        </div>
+                        <div class="upi-item" data-app="PhonePe" data-color="#5f259f">
+                            <div class="app-icon phonepe">Pe</div>
+                            <span>PhonePe</span>
+                        </div>
+                        <div class="upi-item" data-app="Cred" data-color="#000">
+                            <div class="app-icon cred">Cr</div>
+                            <span>Cred</span>
+                        </div>
+                        <div class="upi-item" data-app="Amazon Pay" data-color="#FF9900">
+                            <div class="app-icon amazon">Amz</div>
+                            <span>Amazon</span>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Section for Selected App -->
+                    <div id="upi-dynamic-section" class="hidden-section">
+                        <div class="upi-qr-display">
+                            <p>Scan with <span id="selected-upi-app-name">App</span></p>
+                            <div class="qr-box">
+                                <i data-lucide="qr-code"></i>
+                            </div>
+                        </div>
+                        <div class="divider"><span>OR</span></div>
+                        <div class="form-group">
+                            <label id="upi-input-label">Enter UPI ID</label>
+                            <input type="text" placeholder="username@upi" id="upi-id-input">
+                        </div>
+                    </div>
+
+                    <div id="upi-default-section">
+                        <div class="form-group">
+                            <label>Or enter UPI ID manually</label>
+                            <input type="text" placeholder="username@oksbi">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary full-width pay-btn" id="pay-btn-upi">Verify & Pay</button>
+                </div>
+
+                <!-- Method: PayPal -->
+                <div id="pay-form-paypal" class="payment-method-view center-content">
+                    <div class="paypal-logo">PayPal</div>
+                    <p>You will be redirected to PayPal to complete your secure transaction.</p>
+                    <button class="btn btn-primary full-width pay-btn" id="pay-btn-paypal">Proceed to PayPal</button>
+                </div>
+
+                <!-- Method: Crypto -->
+                <div id="pay-form-crypto" class="payment-method-view">
+                    <p class="method-label">Select Currency</p>
+                    <div class="crypto-select">
+                        <button class="crypto-btn active">Bitcoin (BTC)</button>
+                        <button class="crypto-btn">Ethereum (ETH)</button>
+                    </div>
+                    <div class="qr-placeholder">
+                        <i data-lucide="qr-code"></i>
+                    </div>
+                    <div class="wallet-address">
+                        <span>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</span>
+                        <i data-lucide="copy" class="copy-icon"></i>
+                    </div>
+                    <button class="btn btn-primary full-width pay-btn" id="pay-btn-crypto">I Have Sent Payment</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Tab Bar for Mobile -->
+        <nav class="mobile-tab-bar">
+            <a href="#" class="tab-item active nav-item" data-target="home-view"><i
+                    data-lucide="home"></i><span>Home</span></a>
+            <a href="#" class="tab-item nav-item" data-target="search-view"><i
+                    data-lucide="search"></i><span>Search</span></a>
+            <a href="#" class="tab-item nav-item" data-target="downloads-view"><i
+                    data-lucide="download"></i><span>Downloads</span></a>
+            <a href="#" class="tab-item nav-item" data-target="profile-view"><i
+                    data-lucide="user"></i><span>Profile</span></a>
+        </nav>
+
+        <!-- Video Player Modal -->
+        <div id="video-modal" class="modal-overlay">
+            <div class="video-container">
+                <!-- Video injected via JS -->
+            </div>
+        </div>
+    </div> <!-- End App Container -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
